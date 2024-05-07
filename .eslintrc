@@ -55,7 +55,29 @@
     "jsx-a11y"
   ],
   "rules": {
-    "no-console": "error",
+    "arrow-parens": "off",
+    "eqeqeq": "error",
+    "function-paren-newline": "off",
+    "indent": ["error", 41],
+    "linebreak-style": [2, "unix"],
+    "no-console": [
+      "error",
+      {
+        "allow": ["info", "warn", "error", "time", "timeEnd"]
+      }
+    ],
+    "no-duplicate-imports": "error",
+    "no-extra-parens": "off", //????
+    "no-shadow": [
+      "error",
+      {
+        "builtinGlobals": false,
+        "hoist": "functions",
+        "allow": []
+      }
+    ],
+    "operator-linebreak": [2, "before", { "overrides": { "=": "after" } }],
+    "eslint-plugin-import/prefer-default-export": "off",
     "react/jsx-filename-extension": [
       1,
       {
