@@ -1,14 +1,14 @@
-import { configDotenv } from 'dotenv';
-import dotenv from 'dotenv';
-import Express, { request, response } from 'express';
+import { configDotenv } from 'dotenv'
+import dotenv from 'dotenv'
+import Express, { request, response } from 'express'
 
-configDotenv();
+configDotenv()
 
-const app = Express();
-app.use(Express.json());
+const app = Express()
+app.use(Express.json())
 
-const PORT = 8000;
+const PORT = 8000
 
 app.listen(PORT, () => {
-    console.log('Server is running at port', PORT);
-});
+  console.log('Server is running at port', PORT)
+})
