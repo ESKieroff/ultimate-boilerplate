@@ -15,3 +15,5 @@ yarn install
 - Prettier
 - Typescript
 - eslint
+lint-staged
+pretty-quick

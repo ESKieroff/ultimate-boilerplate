@@ -5,8 +5,9 @@ import Express, { request, response } from 'express'
 configDotenv()
 
 const variavelcomnomegrande = 2
-if (variavelcomnomegrande == 2 && variavelcomnomegrande === 2) {
-  console.log('oi')
+
+if (variavelcomnomegrande == 2) {
+  console.log('oie')
 }
 
 const app = Express()
