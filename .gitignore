@@ -40,7 +40,7 @@ out
 dist
 *.tgz
 .yarn-integrity
-.env
+#.env
 .cache
 .parcel-cache
 .next
