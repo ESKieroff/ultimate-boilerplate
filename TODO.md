@@ -1,13 +1,17 @@
 # BOILERPLATE APP
 
-# RULES
+# CONVENTIONS
+
+## Notice: Please be aware that deviating from the established conventions may result in unforeseen issues for which you will be solely responsible
 
 - use camel case
 - for foreing key, use "fk_" before the name of column, like "fk_userId".
 
-Usage
+Prisma Usage
 
-  $ prisma [command]
+```shell
+  prisma [command]
+```
 
 Commands
 
@@ -29,26 +33,46 @@ Flags
 Examples
 
   Set up a new Prisma project
-  $ prisma init
+
+  ```shell
+  prisma init
+```
 
   Generate artifacts (e.g. Prisma Client)
-  $ prisma generate
 
+  ```shell
+  prisma generate
+```
+  
   Browse your data
-  $ prisma studio
 
+  ```shell
+  prisma studio
+```
+  
   Create migrations from your Prisma schema, apply them to the database, generate artifacts (e.g. Prisma Client)
-  $ prisma migrate dev
 
+  ```shell
+  prisma migrate dev
+```
+  
   Pull the schema from an existing database, updating the Prisma schema
-  $ prisma db pull
+
+  ```shell
+  prisma db pull 
+```
 
   Push the Prisma schema state to the database
-  $ prisma db push
 
+  ```shell
+  prisma db push
+```
+  
 ## for start database postgresql
 
-$ docker compose up -D
+  ```shell
+  docker compose up -D
+```
 
 ## commits pattern
 
@@ -57,3 +81,13 @@ $ docker compose up -D
 ## Problem Details for HTTP APIs
 
 <https://datatracker.ietf.org/doc/html/rfc7807>
+
+# RELEASES
+
+for publish a release of project, after commit use
+
+```shell
+npm run release
+```
+
+and follow the steps.
