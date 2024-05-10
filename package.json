@@ -1,19 +1,25 @@
 {
   "name": "ultimate-boilerplate",
   "author": "ESKieroff",
-  "description": "",
+  "description": "A boilerplate for projects using TypeScript, React, Node.js, Prisma, and more.",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "react",
+    "node",
+    "prisma",
+    "boilerplate"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thisrepository"
+    "url": "git+https://github.com/ESKieroff/ultimate-boilerplate"
   },
   "bugs": {
-    "url": "https://github.com/myrepository"
+    "url": "https://github.com/ESKieroff/ultimate-boilerplate"
   },
-  "homepage": "https://github.com/myrepository",
+  "homepage": "https://github.com/ESKieroff/ultimate-boilerplate",
   "scripts": {
     "dev": "tsup src/index.ts --watch --onSuccess \"env-cmd -f .env nodemon dist/index.js\"",
     "build": "tsup src/index.ts --dts --minify --legacy --format cjs --out-dir dist",
@@ -95,9 +101,6 @@
     },
     "github": {
       "release": true
-    },
-    "npm": {
-      "publish": true
     },
     "plugins": {
       "@release-it/conventional-changelog": {
