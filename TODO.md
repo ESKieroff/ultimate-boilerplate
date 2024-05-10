@@ -1,4 +1,4 @@
-# BOILERPLATE APP
+# BOILERPLATE APP (FOR DUMMIES)
 
 # CONVENTIONS
 
@@ -91,3 +91,13 @@ npm run release
 ```
 
 and follow the steps.
+
+## Conventional Commits micro guide
+
+- `feat`: Addition of a new feature or functionality to the project.
+- `fix`: Correction of an existing bug or issue in the code.
+- `docs`: Changes to documentation, such as README updates, code comments, or API documentation.
+- `style`: Changes that do not affect the code logic, such as formatting, indentation, adding whitespace, or styling changes.
+- `refactor`: Refactoring of existing code, without changing functional behavior.
+- `test`: Addition or modification of tests, including unit tests, integration tests, or adjustments to test scripts.
+- `chore`: Maintenance tasks, configuration adjustments, dependency updates, or any other changes that do not fit into the previous categories.
