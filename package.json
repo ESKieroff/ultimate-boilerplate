@@ -1,8 +1,19 @@
 {
   "name": "ultimate-boilerplate",
+  "author": "ESKieroff",
+  "description": "",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisrepository"
+  },
+  "bugs": {
+    "url": "https://github.com/myrepository"
+  },
+  "homepage": "https://github.com/myrepository",
   "scripts": {
     "dev": "tsup src/index.ts --watch --onSuccess \"env-cmd -f .env nodemon dist/index.js\"",
     "build": "tsup src/index.ts --dts --minify --legacy --format cjs --out-dir dist",
@@ -12,11 +23,12 @@
     "prettier": "npx prettier --write --ignore-unknown .",
     "format": "prettier --write .",
     "prisma": "npx prisma",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "release-it"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged" 
+      "pre-commit": "npx lint-staged"
     }
   },
   "lint-staged": {
@@ -53,7 +65,10 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@prisma/client": "^5.13.0",
+    "@release-it/conventional-changelog": "^8.0.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
@@ -67,7 +82,64 @@
     "pg": "^8.11.5",
     "prisma": "^5.13.0",
     "react": "^18.3.1",
+    "release-it": "^17.2.1",
     "tsx": "^4.9.0",
     "zod": "^3.23.6"
+  },
+  "release-it": {
+    "git": {
+      "tagName": "v${version}",
+      "commitMessage": "chore(release): ${version}",
+      "requireCleanWorkingDir": true,
+      "requireBranch": "main"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "infile": "CHANGELOG.md",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "chore",
+              "section": "Chores"
+            },
+            {
+              "type": "docs",
+              "section": "Documentation"
+            },
+            {
+              "type": "style",
+              "section": "Styles"
+            },
+            {
+              "type": "refactor",
+              "section": "Refactors"
+            },
+            {
+              "type": "perf",
+              "section": "Performance Improvements"
+            },
+            {
+              "type": "test",
+              "section": "Tests"
+            }
+          ]
+        }
+      }
+    }
   }
 }
