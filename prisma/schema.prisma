@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model profiles {
+model Profile {
   id                  Int       @id
   photo               Bytes?
   biography           String?
@@ -25,10 +25,11 @@ model profiles {
   language            Language?
   created_at          DateTime  @default(now()) @db.Timestamp(6)
   updated_at          DateTime  @default(now()) @db.Timestamp(6)
-  users               users     @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users               User     @relation(fields: [id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+@@map("profiles")
 }
 
-model users {
+model User {
   id         Int       @id @default(autoincrement())
   username   String    @unique @db.VarChar(255)
   email      String    @unique @db.VarChar(255)
@@ -40,7 +41,8 @@ model users {
   active     Boolean   @default(true)
   created_at DateTime  @default(now()) @db.Timestamp(6)
   updated_at DateTime  @default(now()) @db.Timestamp(6)
-  profiles   profiles?
+  profiles   Profile?
+  @@map("users")
 }
 
 enum Country {
