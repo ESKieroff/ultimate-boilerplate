@@ -6,7 +6,12 @@
   "files.insertFinalNewline": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[prisma]": {
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "ajmnz.prisma-import"
   }
 }
