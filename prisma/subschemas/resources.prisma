@@ -1,0 +1,66 @@
+import { User} from "users"
+import { Task } from "core"
+model Mensuration {
+  mensurationId Int      @id @default(autoincrement()) @map("mensuration_id")
+  item          Int?
+  thisvalue     Float
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+  Item          Item?    @relation(fields: [item], references: [itemId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("mensurations")
+}
+
+model Item {
+  itemId      Int           @id @default(autoincrement()) @map("item_id")
+  title       String
+  description String
+  tag         Tag[]
+  range_min   Float
+  range_max   Float
+  target      Float
+  Mensuration Mensuration[]
+  User        User          @relation(fields: [fk_userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
+  fk_userId   Int
+  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
+
+  @@map("items")
+}
+
+model Tag {
+  tagId     Int      @id @default(autoincrement()) @map("tag_id")
+  title     String   @db.VarChar(255)
+  color     String
+  itemid    Int?
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+  Item      Item?    @relation(fields: [itemid], references: [itemId], onDelete: NoAction, onUpdate: NoAction)
+  Task      Task?    @relation(fields: [taskId], references: [taskId])
+  taskId    Int?
+
+  @@map("tags")
+}
+
+model Document {
+  documentId  Int      @id @default(autoincrement()) @map("document_id")
+  sequence    Int
+  description String
+  concluded   Boolean
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+
+  @@map("document")
+}
+
+model CheckList {
+  checkListId Int      @id @default(autoincrement()) @map("checklist_id")
+  sequence    Int
+  description String
+  concluded   Boolean
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+  Task        Task[]
+
+  @@map("checklists")
+}

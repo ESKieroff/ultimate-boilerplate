@@ -1,4 +1,5 @@
 import {User} from "users"
+import {CheckList, Tag} from "resources"
 
 model Organization {
   organizationId Int         @id @default(autoincrement()) @map("organization_id")
@@ -46,6 +47,23 @@ model WorkSpace {
   folder          Folder[]
 
   @@map("workspace")
+}
+
+model ConfigWorkSpace {
+  configWorkSpaceId Int        @id @default(autoincrement()) @map("configworkspace_id")
+  avatar            String
+  privateLink       String
+  privacy           Privacy
+  status            Int
+  features          Features[]
+  view              View[]
+  workSpace         Int
+  createdAt         DateTime   @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt         DateTime   @default(now()) @map("updated_at") @db.Timestamp(6)
+  WorkSpace         WorkSpace  @relation(fields: [workSpace], references: [workSpaceId])
+  TaskStatus        TaskStatus @relation(fields: [status], references: [taskStatusId])
+
+  @@map("configworkspace")
 }
 
 model WhiteBoard {
@@ -100,35 +118,6 @@ model TaskStatus {
   @@map("taskstatus")
 }
 
-model ConfigWorkSpace {
-  configWorkSpaceId Int        @id @default(autoincrement()) @map("configworkspace_id")
-  avatar            String
-  privateLink       String
-  privacy           Privacy
-  status            Int
-  features          Features[]
-  view              View[]
-  workSpace         Int
-  createdAt         DateTime   @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt         DateTime   @default(now()) @map("updated_at") @db.Timestamp(6)
-  WorkSpace         WorkSpace  @relation(fields: [workSpace], references: [workSpaceId])
-  TaskStatus        TaskStatus @relation(fields: [status], references: [taskStatusId])
-
-  @@map("configworkspace")
-}
-
-model CheckList {
-  checkListId Int      @id @default(autoincrement()) @map("checklist_id")
-  sequence    Int
-  description String
-  concluded   Boolean
-  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt   DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
-  Task        Task[]
-
-  @@map("checklists")
-}
-
 model Folder {
   folderId    Int        @id @default(autoincrement()) @map("folder_id")
   order       Int
@@ -143,59 +132,6 @@ model Folder {
   children    Folder[]   @relation("ChildToParent")
 
   @@map("folders")
-}
-
-model Document {
-  documentId  Int      @id @default(autoincrement()) @map("document_id")
-  sequence    Int
-  description String
-  concluded   Boolean
-  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt   DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
-
-  @@map("document")
-}
-
-model Tag {
-  tagId     Int      @id @default(autoincrement()) @map("tag_id")
-  title     String   @db.VarChar(255)
-  color     String
-  itemid    Int?
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
-  Item      Item?    @relation(fields: [itemid], references: [itemId], onDelete: NoAction, onUpdate: NoAction)
-  Task      Task?    @relation(fields: [taskId], references: [taskId])
-  taskId    Int?
-
-  @@map("tags")
-}
-
-model Mensuration {
-  mensurationId Int      @id @default(autoincrement()) @map("mensuration_id")
-  item          Int?
-  thisvalue     Float
-  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt     DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
-  Item          Item?    @relation(fields: [item], references: [itemId], onDelete: NoAction, onUpdate: NoAction)
-
-  @@map("mensurations")
-}
-
-model Item {
-  itemId      Int           @id @default(autoincrement()) @map("item_id")
-  title       String
-  description String
-  tag         Tag[]
-  range_min   Float
-  range_max   Float
-  target      Float
-  Mensuration Mensuration[]
-  User        User          @relation(fields: [fk_userId], references: [userId], onDelete: NoAction, onUpdate: NoAction)
-  fk_userId   Int
-  createdAt   DateTime      @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt   DateTime      @default(now()) @map("updated_at") @db.Timestamp(6)
-
-  @@map("items")
 }
 
 enum View {
@@ -247,4 +183,6 @@ enum RoleType {
 enum Situation {
   ACTIVE
   INACTIVE
+  DELETED
+  BLOCKED
 }
